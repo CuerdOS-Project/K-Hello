@@ -1,2 +1,2 @@
-# Yelena-Hello (Project Rename K-Hello)
+# K-Hello
 The CuerdOS welcome application
