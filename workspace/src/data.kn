@@ -1,0 +1,78 @@
+# ══════════════════════════════════════════════════════════════════════════════
+#  data.kn — Archivo de configuración de K-Hello
+#  Coloca este archivo en el mismo directorio que main.py
+# ══════════════════════════════════════════════════════════════════════════════
+#
+#  Secciones disponibles:
+#    [live]   — Configura el modo live (instalador, etiquetas)
+#    [dirs]   — Accesos rápidos de la pestaña INICIO
+#
+#  Sintaxis general:
+#    # línea que empieza con # → comentario ignorado
+#    clave = valor
+#    /ruta/directa             → en [dirs], crea acceso sin nombre explícito
+#
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SECCIÓN [live] — Modo de instalación live
+# ─────────────────────────────────────────────────────────────────────────────
+[live]
+
+# Instalador a lanzar cuando el usuario hace clic en "Instalar CuerdOS".
+# Puede ser:
+#   - Un binario disponible en PATH:           installer = calamares-pkexec
+#   - Una ruta absoluta:                       installer = /usr/bin/calamares
+#   - Un comando con pkexec para elevar:       installer = pkexec calamares
+#
+# Si esta clave no existe, K-Hello intentará detectar el instalador
+# automáticamente (calamares-pkexec, calamares, kron, ubiquity, anaconda…).
+#
+installer = mousepad
+
+# Argumentos adicionales para el instalador (opcional).
+# Se añaden después del binario, separados por espacios.
+# Ejemplo: --config /etc/calamares/settings.conf
+#
+# installer_args =
+
+# Etiqueta personalizada para el botón de instalación (opcional).
+# Si no se define, se usa la traducción por defecto del idioma activo.
+# Útil para mostrar el nombre de tu distro: "Instalar MiDistro 2.0"
+#
+#install_label = Instalar CuerdOS GNU/Linux
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SECCIÓN [dirs] — Accesos rápidos en la pestaña INICIO
+# ─────────────────────────────────────────────────────────────────────────────
+[dirs]
+
+# Formato:  Nombre = /ruta/al/directorio
+#           /ruta/al/directorio          (nombre = carpeta final)
+#
+# Rutas relativas al home del usuario:  ~/Documentos
+# Rutas absolutas:                      /opt/mis-proyectos
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SECCIÓN [tools] — Herramientas de la pestaña Herramientas (opcional)
+# ─────────────────────────────────────────────────────────────────────────────
+# Si esta sección no existe, K-Hello usa las herramientas por defecto con
+# detección automática de KDE/GNOME/otros entornos.
+#
+# Formato de cada línea:
+#   label_key = icono_tema | comando1 | comando2_fallback | ...
+#
+# Los comandos se prueban en orden; se usa el primero que esté disponible.
+# label_key debe coincidir con una clave en translations.py (tool_update, etc.)
+# o será mostrado tal cual como texto del botón.
+#
+# Ejemplo para KDE/GNOME con alternativas:
+#[tools]
+#tool_update   = system-software-update  | yel-soft --updates | plasma-discover --mode Update | gnome-software --mode updates
+#tool_info     = dialog-information      | eclair | kinfocenter | hardinfo
+#tool_store    = system-software-install | yel-soft | plasma-discover | gnome-software
+#tool_browser  = web-browser             | xdg-open https://cuerdos.github.io
+#tool_recovery = drive-harddisk-system   | timeshift-gtk | timeshift
